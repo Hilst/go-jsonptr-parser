@@ -1,4 +1,4 @@
-package tokenizer
+package lexer
 
 type Tokenizer struct {
 	position     int

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	tk "github.com/Hilst/app-ui/tokenizer"
+	lx "github.com/Hilst/app-ui/lexer"
 )
 
 func main() {
@@ -19,13 +19,9 @@ func main() {
 }
 
 func tokenizeInputs(input string) {
-	var lexer = tk.InitTokenizer(input)
-	var t tk.Token
-	for {
-		t = lexer.NextToken()
-		fmt.Println(t)
-		if t.IsEnd() {
-			break
-		}
+	lexer := lx.NewLexer(input)
+	tokens := lexer.GetTokens()
+	for i := 0; i < len(tokens); i++ {
+		fmt.Println(tokens[i])
 	}
 }
