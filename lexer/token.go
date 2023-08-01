@@ -20,30 +20,32 @@ const (
 
 	Ident  TokenType = "IDENT"
 	SQuote TokenType = "'"
+
+	Index TokenType = "INDEX"
 )
 
 type Token struct {
-	type_   TokenType
-	literal string
+	Type    TokenType
+	Literal string
 }
 
-func CreateToken(type_ TokenType, literal string) Token {
+func CreateToken(Type TokenType, literal string) Token {
 	return Token{
-		type_,
+		Type,
 		literal,
 	}
 }
 func (t *Token) IsEnd() bool {
-	return t.type_ == Illegal || t.type_ == EOF
+	return t.Type == Illegal || t.Type == EOF
 }
 func (t Token) Format(f fmt.State, c rune) {
 	var output = "< "
-	if t.type_ == Ident || t.type_ == Number {
-		output += string(t.type_)
+	if t.Type == Ident || t.Type == Number {
+		output += string(t.Type)
 		output += ": "
-		output += t.literal
+		output += t.Literal
 	} else {
-		output += string(t.type_)
+		output += string(t.Type)
 	}
 	output += " >"
 	f.Write([]byte(output))

@@ -34,6 +34,7 @@ func isLetter(ch rune) bool {
 
 var keywords = map[string]Token{
 	"where:": CreateToken(Where, "where:"),
+	"index":  CreateToken(Index, "index"),
 }
 
 func InitTokenizer(input string) Tokenizer {
