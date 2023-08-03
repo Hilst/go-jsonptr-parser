@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	lx "github.com/Hilst/app-ui/lexer"
-	stx "github.com/Hilst/app-ui/syntax"
 )
 
 func main() {
@@ -20,20 +19,9 @@ func main() {
 }
 
 func tokenizeInputs(input string) {
-	lexer := lx.NewLexer(input)
+	lexer := lx.NewLexer(input, make(map[string]interface{}))
 	tokens := lexer.GetTokens()
 	for i := 0; i < len(tokens); i++ {
 		fmt.Printf("%d => %s\n", i, tokens[i])
-	}
-	syntaxAnalyser := stx.NewSyntaxAnalyser(tokens)
-	subs := syntaxAnalyser.GetSubstitutions(stx.WhereSubs)
-	for i := 0; i < len(subs); i++ {
-		fmt.Println(lx.Where)
-		fmt.Println(subs)
-	}
-	subs = syntaxAnalyser.GetSubstitutions(stx.IndexSubs)
-	for i := 0; i < len(subs); i++ {
-		fmt.Println(lx.Index)
-		fmt.Println(subs)
 	}
 }
